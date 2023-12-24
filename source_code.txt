@@ -1,0 +1,107 @@
+Router 1 IP configuration 
+Router> 
+Router>en 
+Router#conf t 
+Router(config)#int s0/0 
+Router(config-if)#ip add 10.0.0.1 255.0.0.0 
+Router(config-if)#clock rate 64000 
+Router(config-if)#bandwidth 72000 
+Router(configure-if)#no shut 
+ 
+Router(config-if)#int s0/1 
+Router(config-if)#ip add 40.0.0.2 255.0.0.0 
+Router(config-if)#no shut 
+ 
+Router(config-if)#int f0/0 
+Router(config-if)#ip add 100.0.0.1 255.0.0.0 
+Router(config-if)#no shut 
+Router(config-if)#exit 
+Router 2 IP configuration 
+Router> 
+Router>en 
+Router#conf t 
+Router(config)#int s0/0 
+Router(config-if)#ip add 10.0.0.2 255.0.0.0 
+Router(configure-if)#no shut 
+Router(config-if)#int s0/1 
+Router(config-if)#ip add 20.0.0.1 255.0.0.0 
+Router(config-if)#clock rate 64000 
+ Router(config-if)#bandwidth 72000 
+Router(config-if)#no shut 
+Router(config-if)#exit 
+Router 3 IP configuration 
+Router> 
+Router>en 
+Router#conf t 
+Router(config)#int s0/0 
+Router(config-if)#ip add 20.0.0.2 255.0.0.0 
+Router(configure-if)#no shut 
+ 
+Router(config-if)#int s0/1 
+Router(config-if)#ip add 30.0.0.1 255.0.0.0 
+Router(config-if)#clock rate 64000 
+Router(config-if)#no shut 
+ 
+Router(config-if)#int f0/0 
+Router(config-if)#ip add 200.0.0.1 255.0.0.0 
+Router(config-if)#no shut 
+Router(config-if)#exit 
+ 
+Router 4 IP configuration 
+Router> 
+Router>en 
+Router#conf t 
+Router(config)#int s0/0 
+Router(config-if)#ip add 30.0.0.2 255.0.0.0 
+Router(configure-if)#no shut 
+
+Router(config-if)#int s0/1 
+Router(config-if)#ip add 40.0.0.1 255.0.0.0 
+Router(config-if)#clock rate 64000 
+Router(config-if)#no shut 
+ 
+Add IP Address to PC1 
+
+IP: 100.0.0.2 
+Subnet Mask: 255.0.0.0 
+Gateway: 100.0.0.1 
+ 
+Add IP Address to PC2 
+IP: 200.0.0.2 
+Subnet Mask: 255.0.0.0 
+Gateway: 200.0.0.1 
+ 
+Configure EIGRP in Router 1 
+Router(config)# 
+Router(config)#router eigrp 10 
+Router(config-router)#network 10.0.0.0 
+R Router(config-router)#network 100.0.0.0 
+Router(config-router)#^Z 
+Router# 
+ 
+Configure EIGRP in Router 2 
+Router(config)# 
+Router(config)#router eigrp 10 
+Router(config-router)#network 10.0.0.0 
+Router(config-router)#network 20.0.0.0 
+Router(config-router)#^Z
+Router# 
+
+Configure EIGRP in Router 3 
+Router(config)# 
+Router(config)#router eigrp 10 
+Router(config-router)#network 20.0.0.0 
+Router(config-router)#network 30.0.0.0 
+Router(config-router)#network 200.0.0.0 
+Router(config-router)#^Z 
+Router# 
+ 
+Configure EIGRP in Router 4 
+Router(config)# 
+Router(config)#router eigrp 10 
+Router(config-router)#network 30.0.0.0 
+Router(config-router)#network 40.0.0.0 
+Router(config-router)#^Z 
+Router# 
+
+outer(config-router)#network 40.0.0.0 
